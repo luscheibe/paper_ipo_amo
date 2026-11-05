@@ -1,3 +1,11 @@
+for i in 1 2 3 4 5 6 7 8 ; do cdo add /home/luanaaparecida/doutorado/composicao_anomalias_diaria/novos_periodos/saida_clim_1979-2024/LISTA_rmm/teste_linearidade/anomalia_IPO_neg_phase${i}.nc /home/luanaaparecida/doutorado/composicao_anomalias_diaria/novos_periodos/saida_clim_1979-2024/LISTA_rmm/teste_linearidade/anomalia_AMO_pos_phase${i}.nc anomalia_add_ipo-_amo+_phase${i}.nc ; done 
+
+for i in 1 2 3 4 5 6 7 8 ; do cdo seltimestep,13 anomalia_add_ipo-_amo+_phase${i}.nc anomalia_add_ipo-_amo+_phase${i}_djf.nc ; done
+
+for i in 1 2 3 4 5 6 7 8 ; do python3 ~/doutorado/programas/diferenca_anomalias_mjo/sig_dif_anom_mjo/calc_sig_dif_series_mjo_estacoes2.py --estacao DJF --modo estacao ~/luanaaparecida_dados/cxc_compostos/chuva_ultima_79-20_diario/ppt/ppt0.nc ~/doutorado/index_mjo_amo_oip/mjo_modo_ipo/interdecadal/lista_rmm_1979-2024/ipo_neg/MJO_0${i}.txt ~/doutorado/index_mjo_amo_oip/mjo_modo_amo/interdecadal/lista_rmm_1979-2024/amo_pos/MJO_0${i}.txt precip ipo-_amo+_phase${i}.nc ;done
+
+
+
 for i in 1 2 3 4 5 6 7 8; do cdo sub TMP_ppt0_MJO_${i}/ppt0_anom.bin.nc anomalia_add_ipo+_amo-_phase${i}.nc residual_phase${i}.nc ; done
 
 
