@@ -1,0 +1,8 @@
+for i in 1 2 3 4 5 6 7 8; do cdo sub TMP_ppt0_MJO_${i}/ppt0_anom.bin.nc anomalia_add_ipo+_amo-_phase${i}.nc residual_phase${i}.nc ; done
+
+
+for i in 1 2 3 4 5 6 7 8 ; do cdo seltimestep,13 residual_phase${i}.nc residual_phase${i}_djf.nc ; done
+
+for i in 1 2 3 4 5 6 7 8 ; do cdo -setcalendar,standard ipo+_amo-_phase${i}.nc ipo+_amo-_phase${i}_djf.nc ; done
+
+for i in 1 2 3 4 5 6 7 8 ; do cdo remapbil,residual_phase${i}_djf.nc ipo+_amo-_phase${i}.nc ipo+_amo-_phase${i}_djf.nc ; done
